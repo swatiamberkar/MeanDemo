@@ -1,5 +1,6 @@
 var http = require('http');
 var express = require('express')
+var serverless = require('serverless-http')
 var port = process.env.PORT || 3000
 var app = express()
 var appRoutes = require('./Routes/appRoutes')
@@ -17,6 +18,13 @@ app.use('/', appRoutes);
 const path = require('path');
 app.use('/', express.static(path.join(__dirname, './dist/mean-frontend')));
 
-
 http.createServer(app).listen(port)
 console.log('Backend running on port', port);
+
+//module.exports.handler = serverless
+
+const handler = serverless(app);
+module.exports.handler = async (event, context) => {
+  const result = await handler(event, context);
+  return result;
+};
