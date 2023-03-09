@@ -8,6 +8,20 @@ var mongoose = require('mongoose')
 var bodyParser = require('body-parser')
 var cors = require('cors')
 
+app.use(function (req, res, next) {
+
+    res.setHeader('Access-Control-Allow-Origin', '*');
+  
+  
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  
+  
+    res.setHeader('Access-Control-Allow-Credentials', true);
+  
+    next();
+  });
 mongoose.connect('mongodb://localhost:27017/meanDb')
 
 app.use(cors())
