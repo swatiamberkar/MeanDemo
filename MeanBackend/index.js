@@ -2,6 +2,7 @@ var http = require('http');
 var express = require('express')
 var serverless = require('serverless-http')
 var port = process.env.PORT || 3000
+var database_url= process.env.DATABASE_URL || 'mongodb+srv://swatiamberkar29:GuxDayuDz3T1UDJ2@cluster0.rnjeiyd.mongodb.net/test';
 var app = express()
 var appRoutes = require('./Routes/appRoutes')
 var mongoose = require('mongoose')
@@ -18,6 +19,17 @@ app.use(function (req, res, next) {
   });
 
 mongoose.connect(process.env.DATABASE_URL || 'mongodb+srv://swatiamberkar29:GuxDayuDz3T1UDJ2@cluster0.rnjeiyd.mongodb.net/test')
+
+
+const { MongoClient, ServerApiVersion } = require('mongodb');
+//const uri = "mongodb+srv://admin:<password>@meancluster.9oikfy1.mongodb.net/?retryWrites=true&w=majority";
+const client = new MongoClient(database_url, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
+
 
 app.use(cors())
 app.use(bodyParser.urlencoded({extended: true}))
