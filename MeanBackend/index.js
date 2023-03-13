@@ -17,7 +17,7 @@ app.use(function (req, res, next) {
     next();
   });
 
-mongoose.connect('mongodb+srv://swatiamberkar29:GuxDayuDz3T1UDJ2@cluster0.rnjeiyd.mongodb.net/test')
+mongoose.connect(process.env.DATABASE_URL || 'mongodb+srv://swatiamberkar29:GuxDayuDz3T1UDJ2@cluster0.rnjeiyd.mongodb.net/test')
 
 app.use(cors())
 app.use(bodyParser.urlencoded({extended: true}))
