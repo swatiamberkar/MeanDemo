@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http'
 import { Country } from '../country'
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CountryService {
   private country: Country = new Country;
-  private baseUrl:string = "http://localhost:3000"
+  //var port = process.env.PORT || 3000
+  private baseUrl:string = "http://localhost:3000" || environment.PORT
   private headers = new  HttpHeaders().set('Content-Type', 'application/json')
   constructor(private http:HttpClient) { }
 

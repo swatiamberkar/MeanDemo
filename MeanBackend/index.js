@@ -19,7 +19,7 @@ app.use(function (req, res, next) {
   });
 
 mongoose.connect(process.env.DATABASE_URL || 'mongodb+srv://swatiamberkar29:GuxDayuDz3T1UDJ2@cluster0.rnjeiyd.mongodb.net/test')
-
+console.log('Database connection');
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
 //const uri = "mongodb+srv://admin:<password>@meancluster.9oikfy1.mongodb.net/?retryWrites=true&w=majority";
@@ -37,7 +37,7 @@ app.use(bodyParser.json())
 app.use('/', appRoutes);
 
 const path = require('path');
-app.use('/', express.static(path.join(__dirname, './dist/mean-frontend')));
+app.use('/', express.static(path.join(__dirname, '.././MeanFrontend/dist/mean-frontend')));
 
 http.createServer(app).listen(port)
 console.log('Backend running on port', port);
