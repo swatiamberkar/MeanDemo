@@ -10,7 +10,7 @@ export class CountryService {
   private country: Country = new Country;
   //var port = process.env.PORT || 3000
   //private baseUrl:string = "http://localhost:3000" || "https://meanapp-flfy.onrender.com/"
-  private baseUrl:string = "https://meanapp-flfy.onrender.com/"
+  private baseUrl:string = "https://meanapp-flfy.onrender.com"
   private headers = new  HttpHeaders().set('Content-Type', 'application/json')
   constructor(private http:HttpClient) { }
 
