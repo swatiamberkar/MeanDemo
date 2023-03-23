@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router()
-var Country = require('./models/dataSchema')
+var Country = require('../models/dataSchema')
 
 router.post('/create', async (req, res) => {
     const user = await Country.create(req.body)

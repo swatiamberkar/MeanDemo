@@ -1,28 +1,26 @@
 var http = require('http');
 var express = require('express')
-var serverless = require('serverless-http')
-var port = process.env.PORT || 3000
-var database_url= process.env.DATABASE_URL || 'mongodb+srv://swatiamberkar29:GuxDayuDz3T1UDJ2@cluster0.rnjeiyd.mongodb.net/test';
 var app = express()
-var appRoutes = require('./Routes/appRoutes')
+var serverless = require('serverless-http')
 var mongoose = require('mongoose')
 var bodyParser = require('body-parser')
 var cors = require('cors')
+const path = require('path');
+const { MongoClient, ServerApiVersion } = require('mongodb');
+var appRoutes = require('./Routes/appRoutes')
+var userRoutes = require('./Routes/userRoutes')
+var employeeRoutes = require('./Routes/employeeRoutes')
+var projectRoutes = require('./Routes/projectRoutes')
+var taskRoutes = require('./Routes/taskRoutes')
+var timesheetRoutes = require('./Routes/timesheetRoutes')
 
-app.use(function (req, res, next) {
 
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    next();
-  });
+var port = process.env.PORT || 3000
+var database_url= process.env.DATABASE_URL || 'mongodb+srv://swatiamberkar29:GuxDayuDz3T1UDJ2@cluster0.rnjeiyd.mongodb.net/test';
 
-mongoose.connect(process.env.DATABASE_URL || 'mongodb+srv://swatiamberkar29:GuxDayuDz3T1UDJ2@cluster0.rnjeiyd.mongodb.net/test')
+mongoose.connect(database_url)
 console.log('Database connection');
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
-//const uri = "mongodb+srv://admin:<password>@meancluster.9oikfy1.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(database_url, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 client.connect(err => {
   const collection = client.db("test").collection("devices");
@@ -30,19 +28,27 @@ client.connect(err => {
   client.close();
 });
 
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+});
 
 app.use(cors())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use('/', appRoutes);
-
-const path = require('path');
+app.use('/', userRoutes);
+app.use('/', employeeRoutes);
+app.use('/', projectRoutes);
+app.use('/', taskRoutes);
+app.use('/', timesheetRoutes);
 app.use('/', express.static(path.join(__dirname, '.././MeanFrontend/dist/mean-frontend')));
 
 http.createServer(app).listen(port)
 console.log('Backend running on port', port);
-
-//module.exports.handler = serverless
 
 const handler = serverless(app);
 module.exports.handler = async (event, context) => {

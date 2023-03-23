@@ -1,0 +1,42 @@
+
+<html>
+
+<body>
+    <div id="header" class="container align-items-center">
+        <div class="row ms-4">
+            <div class="col-10">
+                <h1 class="ms-3 text-center"><b>Login</b></h1>
+            </div>
+        </div>
+    </div>
+
+    <section id="mainBody" class="container-fluid block d-flex align-items-center">
+        <div class="container-fluid d-flex align-items-center">
+          <div class="row">
+            <div class="col-lg-6" >
+                <img src="assets/img/register.webp" class="img-fluid">
+              </div>
+            <div class="col-lg-6">
+              <form (ngSubmit)="login()">
+                <div class="form-group">
+                    <label for="Username">Username</label>
+                    <input class="form-control" type="text" name="username" [(ngModel)]="username">
+                </div>
+            
+                <div class="form-group">
+                    <label for="password">password</label>
+                    <input class="form-control" type="text" name="password" [(ngModel)]="password">
+                </div>
+            
+                <!-- [(ngModel)]="signup.password" -->
+                <input type="submit" value="Login" class="btn mt-3 text-center d-flex button ms-30">
+                <p *ngIf="errorMessage" class="text-danger"><b>{{errorMessage}}</b></p>
+            </form>
+            </div>
+           
+          </div>
+        </div>
+      </section>
+</body>
+
+</html>

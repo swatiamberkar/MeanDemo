@@ -1,0 +1,40 @@
+<html>
+<body>
+    <div id="header" class="container align-items-center">
+        <div class="row ms-4">
+            <div class="col-10">
+                <h1 class="ms-3 text-center"><b>Add Project</b></h1>
+            </div>
+        </div>
+    </div>
+
+    <section id="mainBody" class="container-fluid block d-flex align-items-center">
+        <div class="container-fluid d-flex align-items-center">
+          <div class="row">
+            <div class="col-lg-6">
+              <form (ngSubmit)="create()">
+
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input class="form-control" type="text" name="name" [(ngModel)]="task.name">
+                </div>
+              
+                <div class="form-group">
+                  <label for="capital">Description</label>
+                  <input class="form-control" type="text" name="description" [(ngModel)]="task.description">
+                </div>
+              
+                <input type="submit" value="Save" class="btn mt-3 text-center d-flex button ms-30">
+              </form>
+            </div>
+           
+          </div>
+        </div>
+      </section>
+
+      <div id="footer" class="container align-items-center">
+         <h1>Copyright © 2023. All rights reserved.</h1> 
+    </div>
+    
+</body>
+</html>

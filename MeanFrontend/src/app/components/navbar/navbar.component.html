@@ -7,12 +7,22 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" routerLink="/home" >Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" (click)="newCountry($event)">Add Country</a>
           </li>
-</ul>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#" routerLink="/userlist" >User List</a>
+          </li>
+
+          <button class="text-end" routerLink="/addTimesheet">Add Timesheet</button>
+          <button class="text-end" routerLink="/DatePicker">DatePicker </button>
+    </ul>
       </div>
+<!--  -->
+
     </div>
   </nav>
+

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 import { CountryService } from 'src/app/shared/country.service';
 import { Country } from 'src/app/country';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-create-update',
@@ -13,10 +15,15 @@ export class CreateUpdateComponent implements OnInit {
 
   public country: Country = new Country;
   constructor(private router: Router,
-    private countryService: CountryService) { }
+    private countryService: CountryService,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.country = this.countryService.getter()
+  }
+
+  showSuccess(message:string) {
+    this.toastr.success(message);
   }
 
   createOrUpdate() {
@@ -26,6 +33,7 @@ export class CreateUpdateComponent implements OnInit {
       data => {
         console.log(data);
         this.router.navigate(['/']);
+        this.showSuccess('Record Added Successfully!!')
       },
       error => {
         console.log(error);
@@ -38,6 +46,7 @@ export class CreateUpdateComponent implements OnInit {
         data => {
           console.log(data);
           this.router.navigate(['/']);
+          this.showSuccess('Record Updated Successfully!!')
         },
         error => {
           console.log(error);

@@ -1,0 +1,155 @@
+<!-- Add div to center -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,
+				initial-scale=1.0">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+  <title>Bootstrap Datepicker</title>
+  <style>
+    label {
+      margin-left: 20px;
+    }
+
+    #datepicker {
+      width: 180px;
+    }
+
+    #datepicker>span:hover {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <div class="container">
+
+    <label>Select Date: </label>
+    <div id="datepicker" class="input-group date" data-date-format="mm-dd-yyyy">
+      <input class="form-control" type="text" readonly />
+      <span class="input-group-addon">
+        <i class="glyphicon glyphicon-calendar"></i>
+      </span>
+    </div>
+  </div>
+
+  <h6>Select Task</h6>
+  <select [(ngModel)]="selectedLevel" (change)="selected()">
+    <option>Select</option>
+    <option *ngFor="let task of tasks" [ngValue]="task">{{task.name}}</option>
+  </select>
+  {{selectedLevel | json}}
+
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous">
+    </script>
+
+  <script>
+    $(function () {
+      $("#datepicker").datepicker({
+        autoclose: true,
+        todayHighlight: true,
+      }).datepicker('update', new Date());
+    });
+
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js">
+  </script>
+</body>
+
+</html>
+
+<!-- 
+
+<html>
+
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div id="header" class="container align-items-center">
+    <div class="row ms-4">
+      <div class="col-10">
+        <h1 class="ms-3 text-center"><b>Add Timesheet</b></h1>
+      </div>
+    </div>
+  </div>
+
+  <section id="mainBody" class="">
+    <div class="">
+      <div class="row">
+        <div class="col-lg-6">
+          <form (ngSubmit)="addTimesheet()">
+
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input class="form-control" type="text" name="name" [(ngModel)]="timesheet.name">
+            </div>
+
+            <div class="form-group">
+              <label for="name">Entry Date</label>
+              <input class="form-control" type="text" name="entryDate" [(ngModel)]="timesheet.entryDate">
+            </div>
+
+            <div class="form-group">
+              <label for="name">Task Date</label>
+              <input class="form-control" type="text" name="taskDate" [(ngModel)]="timesheet.taskDate">
+            </div>
+
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown button
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="name">Project</label>
+              <input class="form-control" type="text" name="project" [(ngModel)]="timesheet.project">
+            </div>
+
+            <div class="form-group">
+              <label for="name">Task</label>
+              <input class="form-control" type="text" name="task" [(ngModel)]="timesheet.task">
+            </div>
+
+            <div class="form-group">
+              <label for="capital">Description</label>
+              <input class="form-control" type="text" name="description" [(ngModel)]="timesheet.description">
+            </div>
+
+            <div class="form-group">
+              <label for="name">Hours Invested</label>
+              <input class="form-control" type="text" name="hoursInvested" [(ngModel)]="timesheet.hoursInvested">
+            </div>
+            <input type="submit" value="Submit" class="btn btn-primary">
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>
+
+ -->

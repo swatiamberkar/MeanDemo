@@ -1,0 +1,33 @@
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">
+            Timesheet Report
+        </h4>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Entry Date</th>
+                    <th>Task Date</th>
+                    <th>Project</th>
+                    <th>Task</th>
+                    <th>Description Id</th>
+                    <th>Hours Invested</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let timesheet of timesheets">
+                    <td>{{timesheet.name}}</td>
+                    <td>{{timesheet.entryDate}}</td>
+                    <td>{{timesheet.taskDate}}</td>
+                    <td>{{timesheet.project}}</td>
+                    <td>{{timesheet.task}}</td>
+                    <td>{{timesheet.description}}</td>
+                    <td>{{timesheet.hoursInvested}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
