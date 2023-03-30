@@ -22,26 +22,43 @@
         <div class="row mt-5">
           <div class="col-sm-1">
           </div>
-          <div class="col"> <label for="name"><b>Entry Date</b></label></div>
+          <div class="col-sm-2"> <label for="name"><b>Entry Date</b></label></div>
           <div class="col">
-            <div class="input-group date input-group-addon" data-provide="datepicker">
+            <div class="input-group" disabled>
+              <input
+                class="form-control"
+                placeholder="dd/mm/yyyy"
+                name="d"
+                [(ngModel)]="entryDate"
+                ngbDatepicker
+                #d="ngbDatepicker" 
+                 readonly disabled
+              />
+              <button class="btn btn-outline-secondary bi bi-calendar3" disabled type="button"></button>
+            </div>
+            <!-- <div class="input-group date input-group-addon" data-provide="datepicker">
               <input class="form-control" placeholder="dd/mm/yyyy" name="d2" #c2="ngModel" [(ngModel)]="selectedDate"
                 ngbDatepicker #d2="ngbDatepicker" />
 
 
-              <span class="bi bi-calendar3" (click)="d2.toggle()"></span>
+              <button class="bi bi-calendar3" (click)="d2.toggle()"></button>
 
-            </div>
+            </div> -->
           </div>
           <div class="col"></div>
           <div class="col"> <label for="name"><b>Task Date</b><span style="color: red">*</span>&nbsp;</label></div>
           <div class="col">
-            <div class="input-group date" data-provide="datepicker">
-              <input class="form-control" placeholder="dd/mm/yyyy" name="d2" #c2="ngModel" [(ngModel)]="selectedDate"
-                ngbDatepicker #d2="ngbDatepicker" />
-              <div class="input-group-addon">
-                <span class="bi bi-calendar3" (click)="d2.toggle()"></span>
-              </div>
+            <div class="input-group">
+              <input
+                class="form-control"
+                placeholder="dd/mm/yyyy"
+                name="dp"
+                [(ngModel)]="model"
+                ngbDatepicker
+                #dp="ngbDatepicker"
+                (click)="dp.toggle()" readonly
+              />
+              <button class="btn btn-outline-secondary bi bi-calendar3" (click)="dp.toggle()" type="button"></button>
             </div>
           </div>
           <div class="col-sm-1"></div>
@@ -73,8 +90,8 @@
         <div class="row mt-5">
           <div class="col-sm-1"></div>
           <div class="col"> <label for="capital"><b>Description</b></label></div>
-          <div class="col"> <input class="form-control" type="text" name="description"
-              [(ngModel)]="timesheet.description"></div>
+          <div class="col"> <textarea class="form-control" type="text" name="description"
+              [(ngModel)]="timesheet.description" rows="3" ></textarea>  </div>
 
           <div class="col"></div>
           <div class="col"><label for="name"><b>Hours Invested</b>
@@ -83,10 +100,10 @@
           <div class="col">
             <div style="padding: 0;">
 
-              <input type="number" id="txtTotalHours" style="display: inline-block; width: 60px; margin-left: 5px;"
+              <input type="number" id="txtTotalHours" style="display: inline-block; width: 70px; margin-left: 5px;"
                 name="TotalHours" min="0" max="24" value="08" class="len form-control">
               :
-              <input type="number" id="txtTotalMin" style="display: inline-block; width: 60px; margin-left: 5px;"
+              <input type="number" id="txtTotalMin" style="display: inline-block; width: 70px; margin-left: 5px;"
                 name="TotalMin" min="0" max="59" maxlength="2" value="00" class="len form-control">
               <input type="hidden" id="totalTimes" value="0">
             </div>
